@@ -1,0 +1,27 @@
+
+-Punteros son un tipo de dato que ocupa un espacio en memoria propio.
+-No importa si esta apuntando a otro espacio en memoria, también tiene el suyo.
+-La dirección en memoria de un objeto se ve con &nombreobjeto
+
+-IMPORTANTE: 
+    -No confundir dirección a la que apunta el puntero con dirección del puntero
+
+    &obj  ----> Ya sea un puntero, variable, etc mostrará su dirección propia en memoria.
+    
+    point ----> Mostrará la dirección de memoria a la que apunta el puntero
+    *point ----> Mostrará el contenido de la dirección en memoria a la que apunta
+
+
+En el caso de un puntero al asignarle un valor, estamos siempre modificando el valor al que apunta
+
+EJ:
+
+
+int num=10;
+int *point=0;
+
+point=&num;  ----> Le asignamos la dirección de memoria de la variable al puntero
+
+
+
+

@@ -1,0 +1,15 @@
+
+Operadores de modificación (++, --, *= +=, etc)
+
+Orden de reconocimiento Ejemplo:
+
+int num = 0;
+
+    if ( num++ != 0 )    ----- > False
+
+Debido a que para hacer la comparación primero se lee num se evalua si es != 0 y luego se incrementa 
+En cambio si el operador ++ estuviera al principio si daría True
+
+    if ( ++num != 0 )    ----- > True
+
+Ya que el incremento se da antes de que el condicional llege a num y realice la comparación
