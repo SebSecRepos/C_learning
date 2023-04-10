@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-int main(){ //Programando el %s
+int main(){ //Programando el %sl
 
 /*¡¡¿¿¿ POR QUE AL MOSTRAR EL PUNTERO POR EJ: pChars[0] DE CADA POSICIÓN INICIAL PODEMOS VER UNA CADENA COMPLETA ???!
 
