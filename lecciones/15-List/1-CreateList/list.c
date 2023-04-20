@@ -60,22 +60,26 @@ int main()
     n2.edad=4;                          
     n2.pSig=0;    
 
-    strcpy(n3.nombre, "juan"); 
+    strcpy(n3.nombre, "juan2"); 
     n3.edad=40;                          
-    n3.pSig=0;                          
+    n3.pSig=0;     
+    //Al crear un nodo, su puntero siguiente siempre es 0, luego lo actualizamos
 
 
-    pINI=&(n1);    
-
-    n1.pSig=&n2;
+    pINI=&(n1);     //enlazamos la lista actualizando los pSig
+    n1.pSig=&n2;    
     n2.pSig=&n3;
+                    //n3 quedara enlazado a 0 ya que es el último
+    pAUX=pINI;     //apunta a inicio pero se actualiza con el while al siguiente p      
 
-    pAUX=pINI;           
 
 
     while (pAUX != 0) {
         printf("nombre: %s edad: %d\n", (*pAUX).nombre, (*pAUX).edad);
         pAUX=(*pAUX).pSig;
     }
+
     return 0;
 }
+
+
