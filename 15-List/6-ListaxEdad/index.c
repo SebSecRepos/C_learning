@@ -117,4 +117,3 @@ void showListAge(struct nodo*pINI, int minimunAge){
         }
     }
 }
-
