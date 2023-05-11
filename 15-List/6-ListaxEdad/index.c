@@ -13,6 +13,7 @@ void addNode(struct nodo**ppINI);
 void freeList(struct nodo**ppINI);
 void showLista(struct nodo*pINI);
 void showListAge(struct nodo*pINI, int minimunAge);
+void deleteNode(struct nodo**ppINI, int edad);
 
 
 int main(){
@@ -116,4 +117,44 @@ void showListAge(struct nodo*pINI, int minimunAge){
             pINI=(*pINI).pSIG;
         }
     }
+}
+
+void deleteNode(struct nodo**ppINI, int edad){
+
+    struct nodo * paux=*ppINI;
+    struct nodo * pant=0;
+
+    if(paux == 0){
+        printf("Lista vacía");
+    }else{
+
+        while (paux != 0)
+        {
+
+            if((*paux).edad == edad){   //si es igual a edad
+
+
+                if (paux == *ppINI)     //si ademas es el primero
+                {
+                    if((*paux).pSIG == 0){ //si paux no tiene ninguno adelante
+                        *ppINI=0;           //el puntero al inicio será 0
+                        free(paux);         //y liberamos el espacio (lista vacía)
+                    }else{
+                        *ppINI=(*paux).pSIG; //si tiene uno adelante el inicio ahora será el siguiente
+                        free(paux);          // liberamos el que estaba primero antes
+                    }
+                }else{  //si no es el primero
+                    (*pant).pSIG=(*paux).pSIG;
+                    free(paux);
+                }
+                
+
+            }
+            pant=paux ;          
+            paux=(*paux).pSIG;
+        }
+        
+
+    }
+
 }
