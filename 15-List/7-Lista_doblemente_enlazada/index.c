@@ -53,9 +53,9 @@ int InsertarNodo(struct nodo **ppIni, struct info *dato){
         return 0;
     }else{
 
-        while ( (aux != NULL) && ( (*aux).Info->dni ) > (*dato).dni )
+        while ( (aux != NULL) )
         {
-            aux2=aux;
+            aux2=aux;           //aux2 queda en el anterior
             aux=(*aux).psig;
         }
 
@@ -71,20 +71,37 @@ int InsertarNodo(struct nodo **ppIni, struct info *dato){
 
             (*(*ppIni)).Info=dato; //Cargamos la info del primer nuevo nodo
         }else{
+            
+            //aux2 ---> anteúltimo
+            //aux  ---> último
+
+
+
             (*aux2).psig=(struct nodo *) malloc(sizeof(struct nodo));
-            if(aux != NULL){ //si el último no es null
+            //El siguiente de aux2 ---> nuevo nodo malloqueado
+            
+            //Si aux es no null(No es el último), el nuevo nodo quedará entre medio de de pant y paux
+            
+            if( aux != NULL ){
                 (*aux).pant=(*aux2).psig;
 
+                //El anterior de aux  ---> nuevo nodo malloqueado
+                //en este if es necesario especificarlo ya que aux no es null
             }
+
+            //Si aux si es null, al agregarlo como siguiente al nuevo nodo estaremos finalizando la lista
+            //y no es necesario enlazarlo como en el if ya que es null
+            //quedando el nuevo nodo al final de la lista
+            (*(*aux2).psig).pant=aux2;
+            (*(*aux2).psig).psig=aux;
+        
         }
         
-        // aux2 = anteúltimo   -->
-
-        // <---  aux =  último
-
-        // el sig del anteúltimo =>  el nuevo nodo " malloc"
-        // el anterior de aux =  
 
     }
+
+}
+
+struct info * GenerarNodo(int n, char l, char* pl){
 
 }
