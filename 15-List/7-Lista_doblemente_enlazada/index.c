@@ -160,9 +160,11 @@ struct nodo
     struct info *Info;
 };
 
+void freeList(struct nodo **pINI);
 void addNode(struct nodo ** pINI, struct info *data);
 void showList(struct nodo* pINI);
 struct info* createData(int i);
+void removeNode(struct nodo ** pINI, int n);
 
 int main(){
 
@@ -175,18 +177,27 @@ int main(){
     }
     
     showList(pINI);
-
+    printf("\n \n----- Borramos un nodo -----\n");
+    removeNode(&pINI, 0);
+    showList(pINI);
+    freeList(&pINI);
+    printf("\n \n----- Liberamos memoria -----\n");
+    showList(pINI);
 }
 
 void showList(struct nodo* pINI){
 
-    while (pINI != NULL)
+    if (pINI == NULL)
     {
-        printf("\nNombre: %s, id: %d", (pINI->Info)->nombre, (pINI->Info)->id);
-        pINI=pINI->psig;
-    }
-    
+        printf("\nNo hay elementos en la lista \n");
+    }else{
 
+        while (pINI != NULL)
+        {
+            printf("\nNombre: %s, id: %d", (pINI->Info)->nombre, (pINI->Info)->id);
+            pINI=pINI->psig;
+        }
+    }
 }
 
 struct info* createData(int i){
@@ -199,6 +210,7 @@ struct info* createData(int i){
 
     return data;
 }
+
 void addNode(struct nodo ** pINI, struct info *data){
 
     if( (*pINI) == NULL ){
@@ -226,3 +238,41 @@ void addNode(struct nodo ** pINI, struct info *data){
     }
     
 };
+
+void removeNode( struct nodo **pINI, int n ){
+
+    struct nodo * paux=(*pINI);
+
+    while ( (paux->Info)->id != n ) //recorremos la lista hasta que su id sea el del nodo que queremos remover
+    {
+        paux=paux->psig;
+    }
+
+    
+}
+
+
+
+
+void freeList(struct nodo **pINI){
+
+    if( (*pINI) == NULL ){
+        printf("\n La lista ya ha sido vaciada\n");
+    }else{
+
+        struct nodo *current=(*pINI);
+        struct nodo *next=0;
+
+        while ( current != NULL)
+        {
+            next=current->psig;
+            free(current->Info);
+            free(current);
+            current=next;
+        }
+
+        (*pINI)=NULL;
+    }
+}
+
+
